@@ -11,6 +11,8 @@ COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install -j4
 COPY . /app
 
+RUN yarn install
+
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
