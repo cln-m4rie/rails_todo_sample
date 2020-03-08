@@ -1,0 +1,50 @@
+<form method="POST" action="<%= tasks_path %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <div>
+    <label for="task">Task Name</label>
+    <input id="task" name="task" type="text" required>
+  </div>
+  <div>
+    <label>Task State</label>
+    <%= select :status,:name,Task.statuses.keys.to_a %>
+  </div>
+  <div>
+    <input type="date" name="limit_date" required>
+    <label>Task Limit Day</label>
+  </div>
+  <p>
+    <button type="submit">create</button>
+  </p>
+  </div>
+</form>
+
+<!-- flashメッセージを表示 -->
+<% flash.each do |msg| %>
+  <p><%= msg %></p>
+<% end %>
+<table>
+  <thead>
+  <tr>
+    <th>State</th>
+    <th>Limit</th>
+    <th>Task</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @tasks.each do |t| %>
+    <tr>
+      <td><%= t.status %></td>
+      <td><%= t.due_date %></td>
+      <td><%= t.name %></td>
+      <td>
+        <%= link_to t.name, task_path(id: t.id) %>
+      </td>
+      <td>
+        <button type="submit">delete</button>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -33,3 +33,5 @@ yarn-debug.log*
 .ruby-version
 /mysql/*
 !/mysql/.gitkeep
+
+.idea
